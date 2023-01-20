@@ -75,16 +75,31 @@ extern int yydebug;
     BOOL = 276,                    /* BOOL  */
     MAIN = 277,                    /* MAIN  */
     STRING = 278,                  /* STRING  */
-    NO = 279,                      /* NO  */
-    CH = 280,                      /* CH  */
-    ST = 281,                      /* ST  */
-    ID = 282,                      /* ID  */
-    FL = 283,                      /* FL  */
-    SEP = 284,                     /* SEP  */
-    OP = 285,                      /* OP  */
-    LETTER = 286,                  /* LETTER  */
-    DIGIT = 287,                   /* DIGIT  */
-    UNDERSCORE = 288               /* UNDERSCORE  */
+    CHAR = 279,                    /* CHAR  */
+    REAL = 280,                    /* REAL  */
+    PR_O = 281,                    /* PR_O  */
+    PR_C = 282,                    /* PR_C  */
+    BR_O = 283,                    /* BR_O  */
+    BR_C = 284,                    /* BR_C  */
+    OPCIN = 285,                   /* OPCIN  */
+    OPCOUT = 286,                  /* OPCOUT  */
+    STRICT_LESS = 287,             /* STRICT_LESS  */
+    STRICT_GREAT = 288,            /* STRICT_GREAT  */
+    E = 289,                       /* E  */
+    ATRIB = 290,                   /* ATRIB  */
+    NE = 291,                      /* NE  */
+    LE = 292,                      /* LE  */
+    GE = 293,                      /* GE  */
+    AND = 294,                     /* AND  */
+    OR = 295,                      /* OR  */
+    NOT = 296,                     /* NOT  */
+    MOD = 297,                     /* MOD  */
+    DIV = 298,                     /* DIV  */
+    ID = 299,                      /* ID  */
+    CONST_INT = 300,               /* CONST_INT  */
+    CONST_REAL = 301,              /* CONST_REAL  */
+    CONST_CAR = 302,               /* CONST_CAR  */
+    CONST_SIR = 303                /* CONST_SIR  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -114,16 +129,31 @@ extern int yydebug;
 #define BOOL 276
 #define MAIN 277
 #define STRING 278
-#define NO 279
-#define CH 280
-#define ST 281
-#define ID 282
-#define FL 283
-#define SEP 284
-#define OP 285
-#define LETTER 286
-#define DIGIT 287
-#define UNDERSCORE 288
+#define CHAR 279
+#define REAL 280
+#define PR_O 281
+#define PR_C 282
+#define BR_O 283
+#define BR_C 284
+#define OPCIN 285
+#define OPCOUT 286
+#define STRICT_LESS 287
+#define STRICT_GREAT 288
+#define E 289
+#define ATRIB 290
+#define NE 291
+#define LE 292
+#define GE 293
+#define AND 294
+#define OR 295
+#define NOT 296
+#define MOD 297
+#define DIV 298
+#define ID 299
+#define CONST_INT 300
+#define CONST_REAL 301
+#define CONST_CAR 302
+#define CONST_SIR 303
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -134,7 +164,7 @@ union YYSTYPE
   	int l_val;
 	char *p_val;
 
-#line 138 "y.tab.h"
+#line 168 "y.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

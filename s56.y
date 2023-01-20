@@ -45,21 +45,45 @@ double pop()
 %token MAIN
 %token STRING
 
-%token NO
-%token CH
-%token ST
+%token CHAR
+%token REAL
+
+%token PR_O;
+%token PR_C;
+%token BR_O;
+%token BR_C;
+%token OPCIN;
+%token OPCOUT;
+%token STRICT_LESS;
+%token STRICT_GREAT;
+%token E;
+%token ATRIB;
+%token NE;
+%token LE;
+%token GE;
+%token AND;
+%token OR;
+%token NOT;
+%token MOD;
+%token DIV;
+%token PR_O;
+
 %token ID
-%token FL
-%token SEP
-%token OP
+%token CONST_INT
+%token CONST_REAL
+%token CONST_CAR
+%token CONST_SIR
 
-%token LETTER
-%token DIGIT
-%token UNDERSCORE
+%left '+' '-'
+%left DIV MOD '*' 
+%left LE GE E NE STRICT_GREAT STRICT_LESS 
+%left OR
+%left AND
+%left NOT
 
-
+%type <l_val> constanta
 %%
-program:	INT MAIN '(' ')' '{'statement_list'}'
+program:	INT MAIN PR_O PR_C BR_O statement_list BR_C
 		;
 statement_list:	statement 
 		| statement ';' statement_list
@@ -79,15 +103,11 @@ type:	        BOOL
 		| INT
 		| STRING
 		;
-identifier:	LETTER
-		|UNDERSCORE
-		|LETTER'{'LETTER'}''{'DIGIT'}''{'UNDERSCORE'}'
-		|UNDERSCORE'{'LETTER'}''{'DIGIT'}''{'UNDERSCORE'}'
-		;
-input:	        STRING|NO
+
+input:	        STRING|CONST_INT
 		;
 arraydecl:	type ID '[' ']' '=' '{' '}' ';'
-		| type ID '[' NO ']' '=' list ';'
+		| type ID '[' CONST_INT ']' '=' list ';'
 		;
 list:		term '{' ',' list '}'
 		;
@@ -103,17 +123,44 @@ assignment:	ID '=' term ';'
 		;
 input_output_statement:	 PRINT '<' '<' output ';'
 		;
-output:	        STRING|NO
+output:	        STRING|CONST_INT
 		;
 compound_statement: if_statement 
 		| while_statement
 		;
-if_statement:	IF '(' condition ')' statement_list
+if_statement:	IF '(' expression ')' statement_list
 		;
-condition :     term OP term | ID OP ID | ID OP NO
+expression:     constanta
+                | ID
+                | expression '+' expression
+                | expression '-' expression
+                | expression MOD expression 
+                | expression '*' expression
+                | expression DIV expression
+                | expression LE expression
+                | expression STRICT_LESS expression
+                | expression STRICT_GREAT expression
+                | expression GE expression
+                | expression E expression
+                | expression NE expression
+                | expression AND expression
+                | expression OR expression
+                | NOT PR_O expression PR_C
 		;
-while_statement : WHILE '(' condition ')' '{' statement_list '}'
-
+while_statement : WHILE '(' expression ')' '{' statement_list '}'
+constanta:	CONST_INT	{
+			
+				}
+		| CONST_REAL	{
+			
+				}
+		| CONST_CAR	{
+			
+				}
+	        | CONST_SIR   
+	        	{
+	    		}  
+		;
 
 %%
 
